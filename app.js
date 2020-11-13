@@ -6,21 +6,15 @@ function buildPlot(id) {
         //console.log(bellyData);
         // Grab values from the samples.json object to built the horizontal Bar Chart
         var ids = bellyData.samples[0].otu_ids;
-        //console.log(ids);
         var sampleValues = bellyData.samples[0].sample_values.slice(0, 10).reverse();
-        //console.log(sampleValues);
         var labels = bellyData.samples[0].otu_labels;
-        //console.log(labels);
+        
         // Top 10 otu_ids for plotting
         var slicedID = ids.slice(0, 10).reverse();
-        //console.log(slicedID);
         var idLabel = slicedID.map(d => "OTU " + d)
-        //console.log(idLabel); 
+        
         // Top 10 otu_labels for hovetext for chart
         var sampleLabel = labels.slice(0, 10);
-        //console.log(sampleLabel);
-        //var metadata = bellyData.metadata
-        //console.log(metadata);
     
         // Trace for Bar Chart
         var trace = {
