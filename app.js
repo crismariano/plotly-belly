@@ -83,45 +83,16 @@ function demoData () {
         //console.log(demo);
 
         var metadata = demo.metadata;
-        console.log(metadata);
+        //console.log(metadata);
 
         // Create empty arrays to store metadata information
-        var ids = [];
-        var ethnicities = [];
-        var genders = [];
-        var ages = [];
-        var locations = [];
-        var bbtypes = [];
-        var wfreqs = [];
-
-        // Iterate through each key and value
-        metadata.forEach((meta) => {
-            //Iterate through each metadata object
-            Object.entries(meta).forEach(([key, value]) => {
-                //Use the key to determine hich array to push value to
-                if (key === "id") {
-                    ids.push(value);
-                }
-                if (key === "ethnicity") {
-                    ethnicities.push(value);
-                }
-                if (key === "gender") {
-                    genders.push(value);
-                }
-                if (key === "age") {
-                    ages.push(value);
-                }
-                if (key === "location") {
-                    locations.push(value);
-                }
-                if (key === "bbtype") {
-                    bbtypes.push(value);
-                }
-                if (key === "wfreq") {
-                    wfreqs.push(value);
-                }
-            });
-        });
+        var ids = metadata.map(meta => meta.id);
+        var ethnicities = metadata.map(meta => meta.ethnicity);
+        var genders = metadata.map(meta => meta.gender);
+        var ages = metadata.map(meta => meta.age);
+        var locations = metadata.map(meta => meta.location);
+        var bbtypes = metadata.map(meta => meta.bbtype);
+        var wfreqs = metadata.map(meta => meta.wfreq);
     })
 
 }
