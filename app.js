@@ -1,9 +1,8 @@
 // Use d3.json() to fetch data from JSON file
-// Incoming data is iternally referred to as incomingData
 
 function buildPlot(id) {
     d3.json("data/samples.json").then(function(bellyData) {
-        //console.log(bellyData);
+        console.log(bellyData);
         // Grab values from the samples.json object to built the horizontal Bar Chart
         var ids = bellyData.samples[0].otu_ids;
         var sampleValues = bellyData.samples[0].sample_values.slice(0, 10).reverse();
@@ -62,24 +61,31 @@ function buildPlot(id) {
         var layout1 = {
             xaxis: { title: "OTU ID" },
             height: 600,
-            width: 1000
+            width: 1250
         };
     
         // Bubble Plot
         Plotly.newPlot("bubble", data1, layout1);
     })
 }
-buildPlot()
+buildPlot();
 
-// Demographic Data
-function demoData () {
+// On change to the DOM, call optionChanged()
+d3.selectAll("#selDataset").on("change", optionChanged);
+
+// Demographic Data - Function called by DOM Changes
+function optionChanged () {
+    var dropdownMenu = d3.select("#selDataset");
+    // Assign the value of the dropdown menu option to a variable
+    var dataset = dropdownMenu.property("value");
+
+
     d3.json("data/samples.json").then(function(demo) {
-        //console.log(demo);
+        console.log(demo);
 
         var metadata = demo.metadata;
-        //console.log(metadata);
+        console.log(metadata);
 
-        // Create empty arrays to store metadata information
         var ids = metadata.map(meta => meta.id);
         var ethnicities = metadata.map(meta => meta.ethnicity);
         var genders = metadata.map(meta => meta.gender);
@@ -89,8 +95,14 @@ function demoData () {
         var wfreqs = metadata.map(meta => meta.wfreq);
     })
 
+    // Call function to update the chart
+    updatePlotly(ids);
 }
-demoData()
+// Update the restyled plot's value
+function updatePlotly(newdata) {
+    Plotly.restyle("bar", "values", [newdata])
+}
+
 
 
 
