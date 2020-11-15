@@ -1,3 +1,5 @@
+// Belly Button Biodiversity 
+
 function buildPlot(id) {
 
     //Use D3 to fetch data from json file
